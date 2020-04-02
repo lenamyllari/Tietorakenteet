@@ -13,7 +13,7 @@ public class Menu {
                char select;
                Stack s = new Stack(); // pino-olio
                String data; // Pinon data-kenttä
-               StackIterator iterator = new StackIterator(s);
+               
                do {
 
                        System.out.println("\n\t\t\t1. Alkion lisääminen.");
@@ -37,11 +37,13 @@ public class Menu {
                                System.out.println("Poistettu alkio: "+item.getData());
                            break;
                        case '3':
+                           StackIterator iterator = new StackIterator(s);
                     	   while(iterator.hasNext()) {
                     		   System.out.println(iterator.next());
                     	   }
                            break;
                        case '4':
+                           iterator = new StackIterator(s);
                     	   int size = 0;
                     	   while(iterator.hasNext()) {
                     		   iterator.next();
