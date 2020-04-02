@@ -2,7 +2,8 @@ package stackTable;
 
 public class StackIterator {
 	private int  currentIndex;
-    private Stack container;
+    	private Stack container;
+	int oldCurrent; 
     
     StackIterator (Stack c) { // konstruktori on "package visible"
         container = c;
@@ -10,14 +11,10 @@ public class StackIterator {
     }
     
     public boolean hasNext() {
-        if (container.stack[currentIndex] == null)
-            return false;
-        else
-            return true;
-    }
+        return container.stack[currentIndex]!=null;
     
     public ListItem next() {
-        int oldCurrent = currentIndex;
+      oldCurrent = currentIndex;
         currentIndex++;
         return container.stack[oldCurrent];
     }
