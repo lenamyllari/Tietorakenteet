@@ -71,6 +71,35 @@ public class BinaryTree {
 			return null;
 
 		}
+		public void delete(int aData) {
+			BinaryTree found = find(aData);
+			if(found == null) {
+				System.out.println("tree is empty");
+			}
+			if(found.getRight()==null && found.getLeft()==null) {
+				System.out.println("delete with no children");
+				found.setRoot(null);
+			}
+			else if (found.getRight()==null && found.getLeft()!=null) {
+				System.out.println("delete with left child");
+				found.setRoot(found.getLeft().getRoot());
+			}
+			else if (found.getRight()!=null && found.getLeft()==null) {
+				System.out.println("delete with right child");
+				found.setRoot(found.getRight().getRoot());
+			}
+			else {
+				System.out.println("delete with both children");
+				found.setData(found.getRight().findMostLeft().getRoot().getData());
+				found.getRight().findMostLeft().setRoot(null);
+			}
+		
+		}
+		
+		public BinaryTree findMostLeft() {
+			return (root.left() != null) ? root.left().findMostLeft(): this;
+		}
+	
 		public Node getRoot() {
 			return root;
 		}
@@ -101,45 +130,5 @@ public class BinaryTree {
 
 		public void setRight(BinaryTree tree) {
 			root.setRight(tree);
-		}
-
-	    /*public BinaryTree(String rootValue, BinaryTree left, BinaryTree right){
-	        root = new Node(rootValue, left, right);
-	    } 
-
-	    public void preOrder() {
-	        if (root != null) {
-	            System.out.println(root.getData()+',');
-	            if (root.left() != null) // pääseeekö vasemmalle?
-	                root.left().preOrder();
-	            if (root.right() != null) // pääseekö oikealle?
-	                root.right().preOrder();
-	        }
-
-	    }
-
-	    // löydetty alipuu asetetaan staattiseen muuttujaan found
-	    public void findWithPreOrder() {
-
-	        if (root != null) {
-	            System.out.print(root.getData()+ ": muokkaatko tätä?");
-	            if (root.left()== null)
-	                System.out.print(" (vasemmalla tilaa)");
-	            if (root.right() == null)
-	                System.out.println(" (oikealla tilaa)");
-	            char select = Lue.merkki();
-	            if (select =='k') {
-	                found = this;
-	                return;
-	            }
-	            if (found==null && root.left() != null) // pääseekö vasemmalle?
-	                root.left().findWithPreOrder();
-	            if (found== null && root.right() != null) // pääseekö oikealle?
-	                root.right().findWithPreOrder();
-	        }
-
-	    }
-	    */
-
-	  
+		}  
 }
