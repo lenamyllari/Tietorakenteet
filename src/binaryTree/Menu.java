@@ -18,7 +18,8 @@ public class Menu {
                     System.out.println("\n\t\t\t1. Lisää solmu.");
                     System.out.println("\t\t\t2. Tulosta puu esijärjestyksessä.");
                     System.out.println("\t\t\t3. Etsi puusta.");
-                    System.out.println("\t\t\t4. lopetus ");
+                    System.out.println("\t\t\t4. Poista puusta.");
+                    System.out.println("\t\t\t5. lopetus ");
                     System.out.print("\n\n"); // tehdään tyhjiä rivejä
                     select = Lue.merkki();
                     switch (select) {
@@ -38,13 +39,23 @@ public class Menu {
                     case '3':
                     	System.out.println("Anna etsittävä numero");
                     	data = Integer.parseInt(Lue.rivi());
-        				System.out.println((tree.find(data)!=null) ? "Avain löytyi.": "Avainta ei löytynyt.");       		
+        		System.out.println((tree.find(data)!=null) ? "Avain löytyi.": "Avainta ei löytynyt.");       		
                         break;
                     case '4':
+                        System.out.println("Anna poistettava numero");
+                        data = Integer.parseInt(Lue.rivi());
+                        if(tree.find(data)==null) {
+                        	 System.out.println("Ei löydy puusta");
+                        }
+                        else {
+                        	tree.delete(data);
+                        }
+                        break;
+                    case '5':
                         break;
                     }
             }
-            while (select != '4');
+            while (select != '5');
     }
 //printMenu loppuu 
 }
