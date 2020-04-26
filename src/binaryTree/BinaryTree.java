@@ -131,4 +131,15 @@ public class BinaryTree {
 		public void setRight(BinaryTree tree) {
 			root.setRight(tree);
 		}  
+		public void inOrder() {
+	        if (root != null) {
+	            if (root.left() != null) {
+	                root.left().inOrder();
+	            }
+	            System.out.print(root.getData() + " ");
+	            if (root.right() != null) {
+	                root.right().inOrder();
+	            }
+	        }
+	    }
 }
